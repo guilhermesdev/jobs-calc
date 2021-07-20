@@ -1,10 +1,16 @@
 const Database = require('../db/config');
 
 module.exports = {
-	async get(){
+	async get(userId, jobId){
 		const db = await Database();
 
-		const data = await db.all(`SELECT * FROM jobs`);
+		let data;
+
+		if(!jobId){
+			data = await db.all(`SELECT * FROM jobs WHERE user_id = ${userId}`);
+		} else {
+			data = await db.get(`SELECT * FROM jobs WHERE user_id = ${userId} AND job_id = ${jobId}`)
+		}
 
 		await db.close();
 
@@ -17,15 +23,15 @@ module.exports = {
 			name = "${job.name}",
 			daily_hours = ${job.daily_hours},
 			total_hours = ${job.total_hours}
-			WHERE id = ${jobId};
+			WHERE job_id = ${jobId};
 		`);
 
 		await db.close();
 	},
-	async delete(id){
+	async delete(id, userId){
 		const db = await Database();
 
-		await db.run(`DELETE FROM jobs WHERE id = ${id}`);
+		await db.run(`DELETE FROM jobs WHERE job_id = ${id} AND user_id = ${userId}`);
 
 		await db.close();
 	},
@@ -34,11 +40,13 @@ module.exports = {
 
 		await db.run(`INSERT INTO jobs(
 			name,
+			user_id,
 			daily_hours,
 			total_hours,
 			created_at
 		) VALUES (
 			"${newJob.name}",
+			${newJob.user_id},
 			${newJob.daily_hours},
 			${newJob.total_hours},
 			${newJob.created_at}

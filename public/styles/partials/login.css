@@ -1,0 +1,37 @@
+body{
+	height: 100%;
+	background-color: var(--color-primary);
+}
+
+form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+
+	background-color: var(--color-background);
+	color: var(--color-primary);
+	padding: 1.5rem;
+	border-radius: 0.313rem;
+	margin-top: 2rem;
+}
+
+form > :not(:first-child) {
+	margin-top: 1rem;
+}
+
+button{
+	width: 100%;
+}
+
+.form-remember{
+	width: 100%;
+}
+
+.form-remember > *{
+	width: auto;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 0;
+}

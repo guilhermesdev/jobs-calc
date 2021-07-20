@@ -4,16 +4,20 @@ const routes = express.Router();
 const DashboardController = require('./controllers/DashboardController');
 const ProfileController = require('./controllers/ProfileController');
 const JobController = require('./controllers/JobController');
+const LoginController = require('./controllers/LoginController');
+const { authWithCookies } = require('./middlewares');
 
 routes
-	.get('/', DashboardController.index)
-	.get('/job', JobController.create)
-	.post('/job', JobController.save)
-	.get('/job/:id', JobController.show)
-	.post('/job/:id', JobController.update)
-	.post('/job/delete/:id', JobController.delete)
-	.get('/profile', ProfileController.index)
-	.post('/profile', ProfileController.update)
+	.get('/', authWithCookies, DashboardController.index)
+	.get('/login', LoginController.index)
+	.post('/login', LoginController.login)
+	.get('/job', authWithCookies, JobController.create)
+	.post('/job', authWithCookies, JobController.save)
+	.get('/job/:id', authWithCookies, JobController.show)
+	.post('/job/:id', authWithCookies, JobController.update)
+	.post('/job/delete/:id', authWithCookies, JobController.delete)
+	.get('/profile', authWithCookies, ProfileController.index)
+	.post('/profile', authWithCookies, ProfileController.update)
 ;
 
 module.exports = routes;

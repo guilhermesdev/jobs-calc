@@ -3,22 +3,24 @@ const Job = require('../model/Job');
 const JobUtils = require('../utils/JobUtils');
 
 module.exports = {
-	create(req, res){
+	create(_req, res){
 		return res.render('job');
 	},
 	async save(req, res){
 		await Job.create({
 			...req.body,
+			user_id: req.cookies.id,
 			created_at: Date.now()
 		});
 
 		return res.redirect('/');
 	},
 	async show(req, res){
-		const jobs = await Job.get();
-		const profile = await Profile.get();
+		const userId = req.cookies.id;
 
-		const job = jobs.find(job => +job.id === +req.params.id);
+		const profile = await Profile.get(userId);
+
+		const job = await Job.get(userId, req.params.id);
 
 		if (!job) return res.send('Job não encontrado :(');
 
@@ -40,7 +42,7 @@ module.exports = {
 	async delete(req, res){
 		const jobId = +req.params.id;
 
-		await Job.delete(jobId);
+		await Job.delete(jobId, +req.cookies.id);
 
 		return res.redirect('/');
 	}

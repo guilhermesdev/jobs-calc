@@ -3,9 +3,11 @@ const Profile = require('../model/Profile');
 const JobUtils = require('../utils/JobUtils');
 
 module.exports = {
-	async index(_req, res){
-		const jobs = await Job.get();
-		const profile = await Profile.get();
+	async index(req, res){
+		const userId = req.cookies.id;
+		
+		const jobs = await Job.get(userId);
+		const profile = await Profile.get(userId);
 
 		const statusCounter = {
 			progress: 0,
@@ -21,7 +23,6 @@ module.exports = {
 
 			statusCounter[status]++;
 
-			// if (status === 'progress') jobsTotalHours += +job.daily_hours;
 			status === 'progress' && (jobsTotalHours += +job.daily_hours);
 
 			return {
