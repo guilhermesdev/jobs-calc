@@ -1,26 +1,35 @@
 const Login = require('../model/Login');
 
-// - [ ] Use bcrypt to save password hash on database
-// - [ ] Use JWT instead of a simple cookie
-// - [ ] Improve login methods
-
 module.exports = {
 	index(_req, res){
-		res.render('login');
+		res.render('login', { message: undefined });
 	},
-	async login(req, res){
-		const { remember, email, password } = req.body;
-
-		const user_id = Login.getUserId(email, password);
-
+	async logUser(res, email, password, remember){
+		const response = await Login.getUserId(email, password);
+		
+		if (response instanceof Error) throw response;
+		
 		if (remember) {
-			res.cookie('id', user_id, {
+			res.cookie('id', response, {
 				maxAge: 1296000000
 			});
 		} else {
-			res.cookie('id', user_id);
+			res.cookie('id', response);
 		}
-
-		res.redirect('/');
+	},
+	async login(req, res){
+		const { email, password, remember } = req.body;
+		
+		try {
+			await module.exports.logUser(res, email, password, remember);
+			res.redirect('/');
+		} catch({ message }) {
+			res.render('login', {
+				message: {
+					type: 'Erro',
+					text: message
+				}
+			})			
+		}				
 	}
 }

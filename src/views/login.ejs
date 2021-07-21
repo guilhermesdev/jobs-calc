@@ -10,7 +10,6 @@
 	<title>JobsCalc | login</title>
 
 	<link rel="stylesheet" href="/styles/main.css" />
-	<link rel="stylesheet" href="/styles/partials/page-header.css" />
 	<link rel="stylesheet" href="/styles/partials/login.css" />
 	<link rel="stylesheet" href="/styles/partials/forms.css" />
 	<link rel="stylesheet" href="/styles/partials/buttons.css" />
@@ -26,15 +25,25 @@
 
 	<div class="container centered">
 
-		<form method="POST" class="login-form">
-			<h1>Faça seu login</h1>
-			<input type="email" placeholder="Digite seu email" name="email" required>
-			<input type="password" placeholder="Digite sua senha" name="password" required>
-			<div class="form-remember">
-				<input type="checkbox" name="remember" id="remember">
-				<label for="remember">Lembrar de mim</label>
-			</div>
-			<button class="button orange">Entrar</button>
+
+		<form method="POST" class="login-form animate-up">
+
+			<% if (message) {%>
+				<div class="message message-error fullwidth animate-pop">
+					<%= `${message.type}: ${message.text}` %>
+				</div>
+				<% }%>
+
+					<h1>Faça seu login</h1>
+					<input type="email" placeholder="Digite seu email" name="email" required>
+					<input type="password" placeholder="Digite sua senha" name="password" required>
+					<div class="checkbox-container fullwidth">
+						<input type="checkbox" name="remember" id="remember">
+						<label for="remember">Lembrar de mim</label>
+					</div>
+					<div class="separator fullwidth"></div>
+					<p>Não está registrado? <a href="/sign-up">Registre-se</a></p>
+					<button class="button orange fullwidth">Entrar</button>
 		</form>
 	</div>
 

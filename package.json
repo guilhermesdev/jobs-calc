@@ -5,11 +5,13 @@
   "main": "src/server.js",
   "scripts": {
     "start": "nodemon .",
-    "init-db": "node src/db/init.js"
+    "db:init": "node src/db/init.js",
+    "db:restart": "pwd && rm database.sqlite && yarn db:init"
   },
   "author": "Guilherme Souza",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.5",
     "ejs": "^3.1.6",
     "express": "^4.17.1",

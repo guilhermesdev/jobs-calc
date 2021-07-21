@@ -38,7 +38,7 @@ label {
   margin-bottom: 1rem;
 }
 
-input {
+input:not([type="checkbox"]) {
   font-family: IBM Plex Sans;
   font-weight: 500;
 
@@ -61,7 +61,64 @@ input {
 .input-wrapper{
   width: 50%;
 }
+.checkbox-container > *{
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 0;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+input[type="checkbox"]{
+  appearance: none;
+  position: relative;
+}
+
+input[type="checkbox"]::after{
+  content: '';
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--color-text);
+  border: .5px solid var(--color-card-label);
+  border-radius: 0.313rem;
+  transition: .2s;
+}
+
+input[type="checkbox"]:checked::before{
+  content: '';
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="%23fcfdff" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>');
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  transform: translate(15%, -40%);
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-text);
+  border-radius: 0.313rem;
+  transition: .4s;
+}
+
+input[type="checkbox"]:hover::after{
+  background-color: var(--color-card-label);
+}
+
+input[type="checkbox"]:checked::after{
+  background-color: var(--color-secondary);
+}
+
+input[type="checkbox"]:checked:hover::after{
+  background-color: var(--color-secondary-hover);
+}
 
 input[type="checkbox"] + label{
-	margin-left: .5rem;
+	margin-left: 1.2rem;
 }

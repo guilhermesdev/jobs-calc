@@ -37,6 +37,7 @@
 
 }
 
+
 /* user-agent font-size is 16px, let's make it responsive */
 @media(max-width: 1080px) {
   html {
@@ -78,7 +79,12 @@ textarea {
 }
 
 a {
+  color: var(--color-secondary);
   text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-secondary-hover);
 }
 
 /* basic classes */
@@ -94,8 +100,12 @@ a {
   align-items: center;
 }
 
-.full-height{
+.fullheight{
   height: 100%;
+}
+
+.fullwidth{
+  width: 100%;
 }
 
 .sr-only {

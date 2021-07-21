@@ -16,22 +16,18 @@ form{
 	margin-top: 2rem;
 }
 
-form > :not(:first-child) {
+form > :not(:first-child):not(.separator):not(.separator + * ) {
 	margin-top: 1rem;
 }
 
-button{
-	width: 100%;
+.message{
+	padding: 1rem;
+	border-radius: 0.313rem;
+	background-color: var(--color-background);
+	color: var(--color-primary);
 }
 
-.form-remember{
-	width: 100%;
-}
-
-.form-remember > *{
-	width: auto;
-	cursor: pointer;
-	display: inline-block;
-	vertical-align: middle;
-	margin-bottom: 0;
+.message-error{
+	background-color: var(--color-delete);
+	color: var(--color-text);
 }
