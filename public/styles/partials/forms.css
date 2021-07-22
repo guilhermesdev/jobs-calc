@@ -28,6 +28,18 @@ form .input-group .input-wrapper + .input-wrapper {
   margin-left: 1.5rem;
 }
 
+.form-field{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.form-field label{
+  margin-bottom: .25rem;
+}
+
 label {
   display: inline-block;
 

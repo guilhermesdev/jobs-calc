@@ -14,6 +14,11 @@ form{
 	padding: 1.5rem;
 	border-radius: 0.313rem;
 	margin-top: 2rem;
+	width: min(350px, 85vw);
+}
+
+form > * {
+	width: 100%;
 }
 
 form > :not(:first-child):not(.separator):not(.separator + * ) {

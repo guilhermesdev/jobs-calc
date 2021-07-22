@@ -5,12 +5,15 @@ const DashboardController = require('./controllers/DashboardController');
 const ProfileController = require('./controllers/ProfileController');
 const JobController = require('./controllers/JobController');
 const LoginController = require('./controllers/LoginController');
+const SingUpController = require('./controllers/SignUpController');
 const { authWithCookies } = require('./middlewares');
 
 routes
 	.get('/', authWithCookies, DashboardController.index)
 	.get('/login', LoginController.index)
 	.post('/login', LoginController.login)
+	.get('/sign-up', SingUpController.index)
+	.post('/sign-up', SingUpController.singUp)
 	.get('/job', authWithCookies, JobController.create)
 	.post('/job', authWithCookies, JobController.save)
 	.get('/job/:id', authWithCookies, JobController.show)

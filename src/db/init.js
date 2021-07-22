@@ -42,7 +42,7 @@ const initDb = {
 			vacation_per_year,
 			hour_value
 		) VALUES (
-			"Usuário",
+			"Usuário 1",
 			"user1@email.com",
 			"$2b$10$pqBTs252TqQVDjmIU8zEsu6YAgXFR14z2TjhrnR3S4pOMD8kDKOau", 
 			"https://avatars.dicebear.com/api/avataaars/${String(Math.random()).replace('.','')}.svg?background=%2371718c",
@@ -64,7 +64,7 @@ const initDb = {
 			vacation_per_year,
 			hour_value
 		) VALUES (
-			"Usuário",
+			"Usuário 2",
 			"user2@email.com",
 			"$2b$10$RyDVA9nLukpTj3.q8bSosOBRHkT9uTGDgscCXbkKpdocL5YDeHghq",
 			"https://avatars.dicebear.com/api/avataaars/${String(Math.random()).replace('.','')}.svg?background=%2371718c",
