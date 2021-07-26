@@ -4,7 +4,7 @@ const JobUtils = require('../utils/JobUtils');
 
 module.exports = {
 	async index(req, res){
-		const userId = req.cookies.id;
+		const userId = req.userId;
 		
 		const jobs = await Job.get(userId);
 		const profile = await Profile.get(userId);

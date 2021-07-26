@@ -9,14 +9,14 @@ module.exports = {
 	async save(req, res){
 		await Job.create({
 			...req.body,
-			user_id: req.cookies.id,
+			user_id: req.userId,
 			created_at: Date.now()
 		});
 
 		return res.redirect('/');
 	},
 	async show(req, res){
-		const userId = req.cookies.id;
+		const userId = req.userId;
 
 		const profile = await Profile.get(userId);
 
@@ -42,7 +42,7 @@ module.exports = {
 	async delete(req, res){
 		const jobId = +req.params.id;
 
-		await Job.delete(jobId, +req.cookies.id);
+		await Job.delete(jobId, +req.userId);
 
 		return res.redirect('/');
 	}

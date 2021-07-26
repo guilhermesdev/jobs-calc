@@ -6,21 +6,21 @@ const ProfileController = require('./controllers/ProfileController');
 const JobController = require('./controllers/JobController');
 const LoginController = require('./controllers/LoginController');
 const SingUpController = require('./controllers/SignUpController');
-const { authWithCookies } = require('./middlewares');
+const { auth } = require('./middlewares');
 
 routes
-	.get('/', authWithCookies, DashboardController.index)
+	.get('/', auth, DashboardController.index)
 	.get('/login', LoginController.index)
 	.post('/login', LoginController.login)
 	.get('/sign-up', SingUpController.index)
 	.post('/sign-up', SingUpController.singUp)
-	.get('/job', authWithCookies, JobController.create)
-	.post('/job', authWithCookies, JobController.save)
-	.get('/job/:id', authWithCookies, JobController.show)
-	.post('/job/:id', authWithCookies, JobController.update)
-	.post('/job/delete/:id', authWithCookies, JobController.delete)
-	.get('/profile', authWithCookies, ProfileController.index)
-	.post('/profile', authWithCookies, ProfileController.update)
+	.get('/job', auth, JobController.create)
+	.post('/job', auth, JobController.save)
+	.get('/job/:id', auth, JobController.show)
+	.post('/job/:id', auth, JobController.update)
+	.post('/job/delete/:id', auth, JobController.delete)
+	.get('/profile', auth, ProfileController.index)
+	.post('/profile', auth, ProfileController.update)
 ;
 
 module.exports = routes;

@@ -1,4 +1,6 @@
+require('dotenv').config();
 const Login = require('../model/Login');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
 	index(_req, res){
@@ -7,14 +9,25 @@ module.exports = {
 	async logUser(res, email, password, remember){
 		const response = await Login.getUserId(email, password);
 		
+		const EXPIRATION_TIME = 1296000; // == 15 * 24 * 60 * 60 == 15 days in seconds
+
 		if (response instanceof Error) throw response;
 		
+		const token = jwt.sign(
+			{ id: response },
+			process.env.JWT_SECRET,
+			{ expiresIn: EXPIRATION_TIME }
+		)
+
 		if (remember) {
-			res.cookie('id', response, {
-				maxAge: 1296000000
+			return res.cookie('jwt_token', token, {
+				maxAge: EXPIRATION_TIME * 1000, // transforming in milliseconds
+				httpOnly: true
 			});
 		} else {
-			res.cookie('id', response);
+			return res.cookie('jwt_token', token, {
+				httpOnly: true
+			});
 		}
 	},
 	async login(req, res){

@@ -2,7 +2,7 @@ const Profile = require('../model/Profile');
 
 module.exports = {
 	async index(req, res){
-		return res.render('profile', { profile: await Profile.get(req.cookies.id) });
+		return res.render('profile', { profile: await Profile.get(req.userId) });
 	},
 	async update(req, res){
 		const {
@@ -25,7 +25,7 @@ module.exports = {
 		await Profile.update({
 			...req.body,
 			hour_value
-		}, req.cookies.id);
+		}, req.userId);
 
 		return res.redirect('/profile');
 	}

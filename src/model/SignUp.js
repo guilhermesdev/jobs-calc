@@ -4,9 +4,8 @@ module.exports = {
 	async verifyIfEmailExists(email){
 		const db = await Database();
 
-		const response = await db.get(`
-			SELECT name FROM users WHERE email = "${email}";
-		`);
+		const response = 
+			await db.get(`SELECT name FROM users WHERE email = "${email}";`);
 
 		await db.close();
 		return !!response;

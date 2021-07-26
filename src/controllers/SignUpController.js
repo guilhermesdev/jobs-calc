@@ -25,7 +25,7 @@ module.exports = {
 			await logUser(res, email, password1);
 
 			res.redirect('/');
-		} catch({ message }){
+		} catch({ message }) {
 			res.render('sign-up', {
 				message: {
 					type: 'Erro',
