@@ -36,6 +36,9 @@
 
   font-family: IBM Plex Sans;
   text-align: right;
+
+  position: relative;
+  z-index: 999;
 }
 
 #avatar-profile p {
@@ -66,6 +69,68 @@
   height: 4rem; /* 64px of 16px root*/
   border-radius: 50%;
   border: 0.156rem solid #F1972C; /* 2.5px of 16px root*/
+}
+
+.dropdown{
+  position: absolute;
+  z-index: 990;
+  background-color: var(--color-background);
+  bottom: -130%;
+  right: -8%;
+  transform: translate(50%, 50%);
+
+  border-radius: 0.303rem;
+  padding: .6rem 0;
+}
+
+.dropdown::before{
+  content: '';
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -90%);
+  width: 10px;
+  height: 10px;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  z-index: 34534543455;
+  background-color: inherit;
+}
+
+.dropdown ul{
+  width: 100%;
+}
+
+.dropdown li {
+  list-style: none;
+  cursor: pointer;
+  width: 80px;
+  padding: .2rem .7rem;
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: start;
+  background-color: var(--color-background);
+
+  border-top: 1px solid #e4e5ec;
+}
+
+.dropdown li:hover{
+  background-color: #e8e9f0;
+}
+
+.dropdown li:last-child{
+  border-bottom: 1px solid #e4e5ec;
+}
+
+.dropdown li a{
+  color: var(--color-primary);
+}
+
+.dropdown li.logout a{
+  color: var(--color-delete);
+}
+
+.hidden{
+  display: none;
 }
 
 /* 
@@ -117,7 +182,7 @@
 #summary .button span::before {
   width: 2rem;
   height: 2rem;
-  content: " "; 
+  content: ''; 
   background-color: var(--color-background);
   opacity: 0.16;
   border-radius: 0.313rem; /* 5px of 16px root*/
@@ -274,4 +339,8 @@ main {
   .column.actions{
     grid-area: rb;
   }
+}
+
+#user-img{
+  cursor: pointer
 }

@@ -35,17 +35,36 @@
           <img src="/images/alert-octagon.svg" alt="Alerta" />
           Você <%= freeHours> 0 ? `tem ${freeHours}` : 'não tem' %> horas livres no seu dia
         </span>
-        <a href="/profile" id="avatar-profile">
+        <div id="avatar-profile">
           <p>
-            <%= profile.name %> <span>Ver perfil</span>
+            <%= profile.name %>
+              <span>
+                <a href="/profile">Ver perfil</a>
+              </span>
           </p>
-          <img src="<%= profile.avatar %> " />
-        </a>
+          <img src="<%= profile.avatar %>" id="user-img" />
+          <div class="dropdown hidden animate-pop">
+            <span class="dropdown-arrow"></span>
+            <ul>
+              <li>
+                <a href="/profile">
+                  Perfil
+                </a>
+              </li>
+              <li class="logout">
+                <a href="/login">
+                  Sair
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <div class="separator"></div>
 
-      <section id="summary" class="animate-up delay-1">
+      <!-- <section id="summary" class="animate-up delay-1"> -->
+      <section id="summary">
         <h2 class="sr-only">Sumário</h2>
 
         <div class="info">

@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports = {
 	index(_req, res){
+		res.clearCookie('jwt_token');
 		res.render('login', { message: undefined });
 	},
 	async logUser(res, email, password, remember){
