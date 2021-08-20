@@ -7,7 +7,7 @@
     "dev": "nodemon .",
     "db:init": "node src/db/init.js",
     "db:restart": "pwd && rm database.sqlite && yarn db:init",
-    "start": "node ."
+    "start": "yarn db:init && node ."
   },
   "author": "Guilherme Souza",
   "license": "MIT",
