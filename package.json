@@ -4,9 +4,10 @@
   "description": "O JobsCalc é uma aplicação de estimativa de cálculo para projetos freelancer, onde é possível cadastrar e excluir jobs (projetos), obtendo uma estimativa de custo de cada job. Além disso, é possível traçar o valor da hora da pessoa que estará usando o sistema.",
   "main": "src/server.js",
   "scripts": {
-    "start": "nodemon .",
+    "dev": "nodemon .",
     "db:init": "node src/db/init.js",
-    "db:restart": "pwd && rm database.sqlite && yarn db:init"
+    "db:restart": "pwd && rm database.sqlite && yarn db:init",
+    "start": "node ."
   },
   "author": "Guilherme Souza",
   "license": "MIT",
