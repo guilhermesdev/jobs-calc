@@ -1,5 +1,5 @@
 const Job = require('../model/Job');
-const Profile = require('../model/Profile');
+const User = require('../model/User.js');
 const JobUtils = require('../utils/JobUtils');
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
 		const userId = req.userId;
 		
 		const jobs = await Job.get(userId);
-		const profile = await Profile.get(userId);
+		const profile = await User.getProfile(userId);
 
 		const statusCounter = {
 			progress: 0,

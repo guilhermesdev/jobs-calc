@@ -1,8 +1,8 @@
-const Profile = require('../model/Profile');
+const User = require('../model/User');
 
 module.exports = {
 	async index(req, res){
-		return res.render('profile', { profile: await Profile.get(req.userId) });
+		return res.render('profile', { profile: await User.getProfile(req.userId) });
 	},
 	async update(req, res){
 		const {
@@ -22,7 +22,7 @@ module.exports = {
 
 		const hour_value = +monthly_budget / monthlyTotalHours;
 
-		await Profile.update({
+		await User.updateProfile({
 			...req.body,
 			hour_value
 		}, req.userId);

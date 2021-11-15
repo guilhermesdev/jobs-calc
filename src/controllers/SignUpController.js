@@ -1,9 +1,10 @@
 const bcrypt = require('bcrypt');
+const User = require('../model/User');
 const { logUser } = require('./LoginController');
-const { verifyIfEmailExists, createUser } = require('../model/SignUp');
+const { verifyIfEmailExists } = require('../utils/UserUtils');
 
 module.exports = {
-	index(req, res){
+	index(_req, res){
 		res.render('sign-up', { message: undefined });
 	},
 	async singUp(req, res){
@@ -20,7 +21,7 @@ module.exports = {
 
 			if (emailExists) throw new Error('Este email já está cadastrado');	
 
-			await createUser(name, email, passwordHash);
+			await User.create(name, email, passwordHash);
 
 			await logUser(res, email, password1);
 

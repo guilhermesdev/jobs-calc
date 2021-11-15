@@ -1,4 +1,4 @@
-const Profile = require('../model/Profile');
+const User = require('../model/User');
 const Job = require('../model/Job');
 const JobUtils = require('../utils/JobUtils');
 
@@ -18,7 +18,7 @@ module.exports = {
 	async show(req, res){
 		const userId = req.userId;
 
-		const profile = await Profile.get(userId);
+		const profile = await User.getProfile(userId);
 
 		const job = await Job.get(userId, req.params.id);
 

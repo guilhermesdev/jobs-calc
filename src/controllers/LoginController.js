@@ -1,5 +1,6 @@
 require('dotenv').config();
-const Login = require('../model/Login');
+
+const User = require('../model/User');
 const jwt = require('jsonwebtoken');
 
 module.exports = {
@@ -8,7 +9,7 @@ module.exports = {
 		res.render('login', { message: undefined });
 	},
 	async logUser(res, email, password, remember){
-		const response = await Login.getUserId(email, password);
+		const response = await User.getId(email, password);
 		
 		const EXPIRATION_TIME = 1296000; // == 15 * 24 * 60 * 60 == 15 days in seconds
 
